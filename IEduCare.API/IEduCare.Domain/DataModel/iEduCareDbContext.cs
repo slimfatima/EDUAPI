@@ -1,4 +1,5 @@
 ﻿using System;
+using IEduCare.Shared.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -32,7 +33,7 @@ namespace IEduCare.Domain.DataModel
         public virtual DbSet<Module> Modules { get; set; }
         public virtual DbSet<ModuleSubscription> ModuleSubscriptions { get; set; }
         public virtual DbSet<Status> Statuses { get; set; }
-        public virtual DbSet<Student> Students { get; set; }
+        public virtual DbSet<StudentModel> Students { get; set; }
         public virtual DbSet<TableStudent> TableStudents { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
