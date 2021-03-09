@@ -22,6 +22,8 @@ using IEduCare.Shared.Interfaces;
 using AutoMapper;
 using IEduCare.Service;
 using IEduCare.Service.Managers;
+using IEduCare.Shared.Repository.IRepository;
+using IEduCare.Shared.Repository;
 
 namespace IEduCare.API
 {
@@ -104,11 +106,8 @@ namespace IEduCare.API
             services.AddScoped<ILicenseTypeManager>(manager =>
             new LicenseTypeManager(Configuration.GetConnectionString("iEduCareConnectionString"), mapper));
 
-            services.AddScoped<IStudentManager>(manager =>
-            new StudentManager(Configuration.GetConnectionString("iEduCareConnectionString"), mapper));
-
-
-
+            services.AddScoped<IStudentRepository>(manager =>
+            new StudentRepository(Configuration.GetConnectionString("iEduCareConnectionString"), mapper));
             services.AddControllers();
         }
 
