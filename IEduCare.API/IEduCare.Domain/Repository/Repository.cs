@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace IEduCare.Domain.Repository
@@ -142,7 +143,7 @@ namespace IEduCare.Domain.Repository
         /// <param name="orderByExpression"></param>
         /// <param name="ascending"></param>
         /// <returns></returns>
-        public virtual IEnumerable<T> GetPaged<KProperty>(int pageIndex, int pageCount, System.Linq.Expressions.Expression<Func<T, KProperty>> orderByExpression, bool ascending)
+        public virtual IEnumerable<T> GetPaged<KProperty>(int pageIndex, int pageCount, Expression<Func<T, KProperty>> orderByExpression, bool ascending)
         {
             var set = GetSet();
 
@@ -165,7 +166,7 @@ namespace IEduCare.Domain.Repository
         /// </summary>
         /// <param name="filter"></param>
         /// <returns></returns>
-        public virtual IQueryable<T> GetFiltered(System.Linq.Expressions.Expression<Func<T, bool>> filter)
+        public virtual IQueryable<T> GetFiltered(Expression<Func<T, bool>> filter)
         {
             return GetSet().Where(filter);
         }

@@ -19,7 +19,7 @@ namespace IEduCare.Service.Managers
 
         }
 
-        public List<StudentDto> Get()
+        public List<StudentDto> GetStudent()
         {
             var dtos = new List<StudentDto>();
             using (var context = new DataContext(ConnectionString))
@@ -74,7 +74,7 @@ namespace IEduCare.Service.Managers
             return studentObjDto;
         }
 
-        public StudentDto Update(StudentModel model, Guid id)
+        public StudentDto UpdateStudent(Guid id, StudentModel model)
         {
             var dto = new StudentDto();
             using (var context = new DataContext(ConnectionString))
@@ -86,6 +86,28 @@ namespace IEduCare.Service.Managers
                 {
                     // properties of the object to be updated
                     _studentRepository.Modify(_objToUpdate);
+
+                    var mappedObject = Map(_objToUpdate, dto, typeof(StudentModel), typeof(StudentDto));
+
+                    dto = mappedObject as StudentDto;
+                    return dto;
+                }
+            }
+            return null;
+        }
+
+        public StudentDto DeleteStudent(Guid id)
+        {
+            var dto = new StudentDto();
+            using (var context = new DataContext(ConnectionString))
+            {
+                _studentRepository = new Repository<StudentModel>(context);
+
+                var _objToUpdate = _studentRepository.Get(id);
+                if (_objToUpdate != null && _objToUpdate.Id != Guid.Empty)
+                {
+                    // properties of the object to be updated
+                    _studentRepository.Remove(_objToUpdate);
 
                     var mappedObject = Map(_objToUpdate, dto, typeof(StudentModel), typeof(StudentDto));
 
