@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace IEduCare.API.Controllers
 {
-    public class StudentsController : Controller
+    [ApiController]
+    public class StudentsController : ControllerBase
     {
         private readonly IStudentManager _studentsManager;
 
@@ -20,7 +21,7 @@ namespace IEduCare.API.Controllers
         [HttpGet("api/ieducare/student/get")]
         public ActionResult<List<StudentDto>> Get()
         {
-            var students = _studentsManager.Get();
+            var students = _studentsManager.GetStudent();
             return students;
         }
     }

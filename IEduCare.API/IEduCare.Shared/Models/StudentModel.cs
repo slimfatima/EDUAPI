@@ -119,6 +119,6 @@ namespace IEduCare.Shared.Models
 
         public T ValueOrDefalt { get { return value; } }
 
-        public static implicit operator T(WriteOnce<T> value) { return value.Value}
+        public static implicit operator T(WriteOnce<T> value) { return value.Value; }
     }
 }
