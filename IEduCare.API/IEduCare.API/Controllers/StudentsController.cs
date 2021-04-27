@@ -30,7 +30,7 @@ namespace IEduCare.API.Controllers
             return students;
         }
 
-        [HttpGet("api/ieducare/student/getstudentbyid")]
+        [HttpGet("api/ieducare/student/getstudentbyid", Name = "GetStudentById")]
         public ActionResult<StudentDto> GetStudentById(Guid id)
         {
             if(id == Guid.Empty)
@@ -42,7 +42,7 @@ namespace IEduCare.API.Controllers
             {
                 return BadRequest();
             }
-            return student;
+            return Ok(student);
         }
 
         [HttpPost("api/ieducare/student/createstudent")]
@@ -57,7 +57,7 @@ namespace IEduCare.API.Controllers
             {
                 return NotFound();
             }
-            return student;
+            return CreatedAtRoute("GetStudentById", new { studentId = student.Id }, student);
         }
 
         [HttpPut("api/ieducare/student/updatestudent")]
@@ -72,7 +72,7 @@ namespace IEduCare.API.Controllers
             {
                 return NotFound();
             }
-            return student;
+            return NoContent();
         }
 
         [HttpDelete("api/ieducare/student/deletestudent")]
@@ -82,7 +82,8 @@ namespace IEduCare.API.Controllers
             {
                 return BadRequest();
             }
-            return _studentsManager.DeleteStudent(id);
+            _studentsManager.DeleteStudent(id);
+            return NoContent();
         }
     }
 }

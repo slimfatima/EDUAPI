@@ -28,7 +28,7 @@ namespace IEduCare.API.Controllers
             {
                 return NotFound();
             }
-            return (ActionResult)students;
+            return Ok(students);
         }
 
         [HttpGet("api/ieducare/dashboard/getstudentbyid")]
@@ -43,7 +43,7 @@ namespace IEduCare.API.Controllers
             {
                 return BadRequest();
             }
-            return student;
+            return Ok(student);
         }
     }
 }

@@ -29,10 +29,10 @@ namespace IEduCare.API.Controllers
             {
                 return NotFound();
             }
-            return (ActionResult)students;
+            return Ok(students);
         }
 
-        [HttpGet("api/ieducare/studentprofile/getstudentprofilebyid")]
+        [HttpGet("api/ieducare/studentprofile/getstudentprofilebyid", Name = "GetStudentById")]
         public ActionResult<StudentProfileDto> GetStudentById(Guid id)
         {
             if (id == Guid.Empty)
@@ -44,7 +44,7 @@ namespace IEduCare.API.Controllers
             {
                 return BadRequest();
             }
-            return student;
+            return Ok(student);
         }
 
         [HttpPost("api/ieducare/studentprofile/createstudentprofile")]
@@ -59,7 +59,7 @@ namespace IEduCare.API.Controllers
             {
                 return NotFound();
             }
-            return student;
+            return CreatedAtRoute("GetStudentById", new { studentId = student.Id }, student);
         }
 
         [HttpPut("api/ieducare/studentprofile/updatestudentprofile")]
@@ -74,7 +74,7 @@ namespace IEduCare.API.Controllers
             {
                 return NotFound();
             }
-            return student;
+            return NoContent();
         }
     }
 }
