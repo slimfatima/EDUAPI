@@ -7,6 +7,7 @@ namespace IEduCare.Shared.Dto
     public class StudentProfileDto
     {
         // student profile
+        public Guid Id { get; set; }
         public string FullName { get; set; }
         public string Gender { get; set; }
         public string EmailAddress { get; set; }
